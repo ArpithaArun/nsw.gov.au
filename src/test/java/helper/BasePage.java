@@ -11,7 +11,14 @@ public class BasePage {
 
 
     public WebDriver getDriver() {
-        System.setProperty("webdriver.chrome.driver", "./drivers/chromedriver");
+        String os = System.getProperty("os.name").toLowerCase();
+
+        if(os.contains("mac")) {
+            System.setProperty("webdriver.chrome.driver","./drivers/chromedriver");
+        }
+        else{
+            System.setProperty("webdriver.chrome.driver","./drivers/chromedriver.exe");
+        }
         driver = new ChromeDriver();
         driver.manage().deleteAllCookies();
         driver.manage().window().maximize();
